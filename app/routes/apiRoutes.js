@@ -29,8 +29,6 @@ module.exports = function(app) {
 			res.send(dbArray);
 
 		});
-
-		// console.log(dbArray);
 	});
 
 	app.post("/api/friends", function(req, res) {
@@ -44,6 +42,4 @@ module.exports = function(app) {
 		// do the logic and display the modal
 
 	}); // app.post
-
-
 }; // module.exports
