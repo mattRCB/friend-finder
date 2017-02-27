@@ -10,7 +10,7 @@ function formatSurveyResults(body) {
 
 	for (i = 0; i < 10; i++) {
 		var index = ('question-' + i);
-		result.scores.push(parseInt(body[index]));
+		result.scores.push(body[index].slice(0, 1));
 	}
 	console.log(result);
 	return result;
@@ -20,11 +20,21 @@ module.exports = function(app) {
 	var bodyParser = require('body-parser');
 
 	app.get("/api/friends", function(req, res) {
-		res.send(friendsDB);
+		var dbArray;
+		fs.readFile("./app/data/friendsDB.txt", 'utf-8', function(err, data) {
+			if (err) throw err;
+			// console.log(data);
+			dbArray = "[" + data + "]";
+			console.log(dbArray);
+			res.send(dbArray);
+
+		});
+
+		// console.log(dbArray);
 	});
 
 	app.post("/api/friends", function(req, res) {
-		fs.appendFile("./app/data/friendsDB.txt", (",\n" + JSON.stringify(formatSurveyResults(req.body))), function (err) {
+		fs.appendFile("./app/data/friendsDB.txt", ("," + JSON.stringify(formatSurveyResults(req.body))), function (err) {
 			if (err) throw err;
 			console.log("Added new user to friendsDB");
 		});
