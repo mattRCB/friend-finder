@@ -9,11 +9,13 @@
 
 
 		<form action="/api/friends" method="post">
-			<% for (var i=0; i<questions.length; i++) {%>
+			<input name="name" type="text" placeholder="Enter a username"></input>
+			<input name="photo" type="text" placeholder="Enter a link to a photo image"></input>
+			<% for (var i=0; i < questions.length; i++) {%>
 				<div>
 					<p><%= questions[i] %> <br>
 					<select name="question-<%= [i] %>">
-						<% for (var j=0; j<answers.length; j++) { %>
+						<% for (var j=0; j < answers.length; j++) { %>
 								<option value="<%= answers[j]%>"><%= answers[j]%></option>
 						<% } %>
 					</select>

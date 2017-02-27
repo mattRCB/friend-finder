@@ -2,8 +2,6 @@ module.exports = function(app) {
 	var path = require('path');
 	var questionnaire = require('../data/questions.js');
 
-	console.log(questionnaire.answers);
-
 	app.get('/survey', function(req, res) {
 		res.render('survey', {
 			title: 'Survey',

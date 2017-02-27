@@ -9,7 +9,8 @@ var questionnaire = {
 			"The way to have a life of wealth is to build a \"disruptive technology\"—that's the goal!",
 			"Aristotle is just some stoopid dead guy.",
 			"Uber is just a different kind of taxi company.",
-			"Steve Jobs was over-rated."
+			"Steve Jobs was over-rated.",
+			"Windows 10 is better than MacOS Sierra"
 		],
 	answers :
 		[

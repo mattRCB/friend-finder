@@ -21,12 +21,6 @@ require("./app/routes/htmlRoutes")(app);
 
 
 
-
-
-
-
-
-
 app.listen(port, function() {
   console.log("FriendFinder serving on PORT: " + port);
 });
