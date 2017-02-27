@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Friend Finder</title>
-</head>
-<body>
-<h1><%= title %></h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quod, praesentium dolor velit culpa cupiditate odio nihil voluptates aliquid eum dolore eligendi quas nobis nam nesciunt odit pariatur minus cum.</p>
+	<head>
+		<meta charset="utf-8">
+		<title>Friend Finder</title>
+	</head>
+	<body>
+		<h1><%= title %></h1>
 
-<ul>
-<% for(var i=0; i<questions.length; i++) {%>
-  <li><%= questions[i] %></li>
-<% } %>
-</ul>
-</body>
+
+		<form action="/api/friends" method="post">
+			<% for (var i=0; i<questions.length; i++) {%>
+				<div>
+					<p><%= questions[i] %> <br>
+					<select name="question-<%= [i] %>">
+						<% for (var j=0; j<answers.length; j++) { %>
+								<option value="<%= answers[j]%>"><%= answers[j]%></option>
+						<% } %>
+					</select>
+					</p>
+				</div>
+			<% } %>
+			<input type="submit" value="submit">
+		</form>
+	</body>
 </html>
