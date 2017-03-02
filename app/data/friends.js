@@ -1,22 +1,18 @@
-var friendsDB = [
-	{
-		"name":"Ahmed",
-		"photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
-		"scores":[
-		5,
-		1,
-		4,
-		4,
-		5,
-		1,
-		2,
-		5,
-		4,
-		1
-		]
+module.exports = {
+
+	formatSurveyResults: function(body) {
+		var result = {};
+		result.name = body.name;
+		result.photo = body.photo;
+		result.scores = [];
+
+		for (i = 0; i < 10; i++) {
+			var index = ('question-' + i);
+			result.scores.push(body[index].slice(0, 1));
+		}
+		console.log(result);
+		return result;
 	}
 
-];
+};
 
-
-module.exports = friendsDB;

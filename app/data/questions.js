@@ -23,7 +23,4 @@ var questionnaire = {
 		]
 };
 
-
-
 module.exports = questionnaire;
-// module.exports = answers;

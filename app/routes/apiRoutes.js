@@ -1,20 +1,8 @@
 // var friendsDB = require("../data/friends");
-require('../data/friends.js');
+var friends = require('../data/friends.js');
 var fs = require('fs');
 
-function formatSurveyResults(body) {
-	var result = {};
-	result.name = body.name;
-	result.photo = body.photo;
-	result.scores = [];
 
-	for (i = 0; i < 10; i++) {
-		var index = ('question-' + i);
-		result.scores.push(body[index].slice(0, 1));
-	}
-	console.log(result);
-	return result;
-};
 
 module.exports = function(app) {
 	var bodyParser = require('body-parser');
@@ -32,14 +20,15 @@ module.exports = function(app) {
 	});
 
 	app.post("/api/friends", function(req, res) {
-		fs.appendFile("./app/data/friendsDB.txt", ("," + JSON.stringify(formatSurveyResults(req.body))), function (err) {
+		console.log(JSON.stringify(req.body));
+
+		fs.appendFile("./app/data/friendsDB.txt", ("," + JSON.stringify(req.body)), function (err) {
 			if (err) throw err;
 			console.log("Added new user to friendsDB");
 		});
 
-		res.redirect("/");
-
-		// do the logic and display the modal
+		// do the logic and res.send() the bestMate data (as json?).
+		res.send("something");
 
 	}); // app.post
 }; // module.exports

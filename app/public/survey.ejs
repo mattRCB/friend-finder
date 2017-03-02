@@ -3,12 +3,33 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Friend Finder</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- 		<link rel="stylesheet" type="text/css" href="./assets/css/style.css">  -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<h1><%= title %></h1>
 
+		<div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Your Programming Pal</h4>
+					</div>
+					<div class="modal-body">
+						<!-- dynamic content -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div> <!-- myModal -->
 
-		<form action="/api/friends" method="post">
+		<form>
 			<input name="name" type="text" placeholder="Enter a username"></input>
 			<input name="photo" type="text" placeholder="Enter a link to a photo image"></input>
 			<% for (var i=0; i < questions.length; i++) {%>
@@ -22,7 +43,60 @@
 					</p>
 				</div>
 			<% } %>
-			<input type="submit" value="submit">
+			<button type="submit" value="submit" id="submit">Submit</button>
 		</form>
+
+
+	<script>
+		$(document).ready(function() {
+			$("#submit").on("click", function(event) {
+				event.preventDefault();
+				console.log("clicked submit form");
+	
+
+
+				var newUser = {};
+				newUser.name = $("[name='name']").val().trim();
+				newUser.photo = $("[name='photo']").val().trim();
+				newUser.scores = [];
+
+				for (i = 0; i < 10; i++) {
+					var index = ("'question-" + i + "'");
+					// console.log($("[name=" + index + "]").val().slice(0, 1));
+					newUser.scores.push($("[name=" + index + "]").val().slice(0, 1));
+				}
+				// console.log(newUser);
+				$.post("/api/friends", newUser, function(bestMate) {
+
+					// jQuery bestMate data into html elements, then append to #myModal body.
+					$(".modal-body").append(bestMate);
+					$('#myModal').modal('show');
+				});
+			});
+
+
+
+
+			
+		}); // document.ready function
+	</script>
+
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
