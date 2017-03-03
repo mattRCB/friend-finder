@@ -66,9 +66,15 @@
 					newUser.scores.push($("[name=" + index + "]").val().slice(0, 1));
 				}
 				// console.log(newUser);
-				$.post("/api/friends", newUser, function(bestMate) {
+				$.post("/api/friends", newUser, function(mateData) {
+					console.log(JSON.parse(mateData).photo);
+					var bestMate = '<img src=' + JSON.parse(mateData).photo + '><p>' + JSON.parse(mateData).name + '</p>';
+					// console.log(pic);
 
+					// var bestMate = '<img src="' + pic + '">';
+					console.log(bestMate);
 					// jQuery bestMate data into html elements, then append to #myModal body.
+					$('.modal-body').empty();
 					$(".modal-body").append(bestMate);
 					$('#myModal').modal('show');
 				});

@@ -26,9 +26,9 @@ module.exports = function(app) {
 			if (err) throw err;
 			console.log("Added new user to friendsDB");
 		});
-
+			
 		// do the logic and res.send() the bestMate data (as json?).
-		res.send("something");
+		res.send(JSON.stringify(req.body));
 
 	}); // app.post
 }; // module.exports
