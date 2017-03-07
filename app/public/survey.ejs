@@ -52,8 +52,6 @@
 			$("#submit").on("click", function(event) {
 				event.preventDefault();
 				console.log("clicked submit form");
-	
-
 
 				var newUser = {};
 				newUser.name = $("[name='name']").val().trim();
@@ -67,7 +65,7 @@
 				}
 				// console.log(newUser);
 				$.post("/api/friends", newUser, function(mateData) {
-					console.log(JSON.parse(mateData).photo);
+					console.log(JSON.parse(mateData));
 					var bestMate = '<img src=' + JSON.parse(mateData).photo + '><p>' + JSON.parse(mateData).name + '</p>';
 					// console.log(pic);
 
